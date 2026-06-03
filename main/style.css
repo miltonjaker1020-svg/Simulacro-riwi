@@ -1,0 +1,354 @@
+
+.hidden {
+    display: none;
+}
+
+.mensaje { padding: 10px; margin-bottom: 10px; border-radius: 4px; display: none; }
+.exito { background-color: #d4edda; color: #155724; }
+.error { background-color: #f8d7da; color: #721c24; }
+
+
+
+
+
+
+/* =========================================
+   VARIABLES GLOBALES Y RESETEO
+========================================= */
+:root {
+    --primary-color: #4f46e5;      /* Azul índigo para acciones principales */
+    --primary-hover: #4338ca;
+    --success-color: #10b981;      /* Verde esmeralda para "Agregar Proyecto" */
+    --success-hover: #059669;
+    --danger-color: #ef4444;       /* Rojo para el botón de Salir */
+    --danger-hover: #dc2626;
+    --bg-color: #f9fafb;           /* Fondo gris muy claro */
+    --card-bg: #ffffff;            /* Fondo blanco para formularios */
+    --text-main: #111827;          /* Texto principal oscuro */
+    --text-muted: #6b7280;         /* Texto secundario gris */
+    --border-color: #d1d5db;       /* Color de bordes */
+    --font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.6;
+    padding-bottom: 3rem;
+}
+
+/* =========================================
+   BARRA DE NAVEGACIÓN (HEADER)
+========================================= */
+header {
+    background-color: var(--card-bg);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 1rem 2rem;
+    margin-bottom: 2rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#logout {
+    background-color: var(--danger-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#logout:hover {
+    background-color: var(--danger-hover);
+}
+
+/* =========================================
+   TIPOGRAFÍA Y TÍTULOS
+========================================= */
+h1 {
+    text-align: center;
+    color: var(--text-main);
+    margin-top: 1rem;
+    font-size: 2.2rem;
+}
+
+h2 {
+    text-align: center;
+    color: var(--text-muted);
+    font-weight: 400;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+h3 {
+    max-width: 800px;
+    margin: 0 auto 1rem auto;
+    padding: 0 1rem 0.5rem 1rem;
+    color: var(--text-main);
+    border-bottom: 2px solid var(--border-color);
+}
+
+/* =========================================
+   VISTA DE LOGIN (.login-form)
+========================================= */
+.login-form {
+    background-color: var(--card-bg);
+    max-width: 400px;
+    margin: 10vh auto; /* Centrado vertical y horizontalmente */
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.login-form h1 {
+    margin: 0 0 0.5rem 0;
+    font-size: 2rem;
+    color: var(--primary-color);
+}
+
+.login-form input {
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.login-form input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+.login-form button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.9rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    margin-top: 0.5rem;
+}
+
+.login-form button:hover {
+    background-color: var(--primary-hover);
+}
+
+.login-form button:active {
+    transform: scale(0.98);
+}
+
+/* =========================================
+   VISTA DEL MANAGER (.project-form)
+========================================= */
+.project-form {
+    background-color: var(--card-bg);
+    max-width: 800px;
+    margin: 0 auto 2.5rem auto;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+}
+
+/* Hacer que los inputs de texto ocupen ambas columnas en pantallas grandes */
+.project-form #projectName, 
+.project-form #projectDescription {
+    grid-column: span 2;
+}
+
+.project-form input,
+.project-form select {
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    color: var(--text-main);
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+.project-form input:focus,
+.project-form select:focus {
+    outline: none;
+    border-color: var(--success-color);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+}
+
+.project-form button {
+    grid-column: span 2;
+    background-color: var(--success-color);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.project-form button:hover {
+    background-color: var(--success-hover);
+}
+
+.project-form button:active {
+    transform: scale(0.98);
+}
+
+/* =========================================
+   LISTA DE PROYECTOS (ul vacíos)
+========================================= */
+/* Aplica a los UL que estén directamente en el body o después del form */
+body > ul, .project-form + ul, h3 + ul {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Estilo preparatorio para cuando agregues los <li> (Proyectos) con JavaScript */
+body > ul li, h3 + ul li {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    border-left: 5px solid var(--primary-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s ease;
+}
+
+body > ul li:hover, h3 + ul li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* =========================================
+   DISEÑO RESPONSIVO (MÓVILES)
+========================================= */
+@media (max-width: 600px) {
+    .project-form {
+        grid-template-columns: 1fr;
+        margin: 0 1rem 2.5rem 1rem;
+    }
+    .project-form #projectName, 
+    .project-form #projectDescription, 
+    .project-form button {
+        grid-column: span 1;
+    }
+    .login-form {
+        margin: 5vh 1rem;
+    }
+}
+
+
+
+
+
+/* =========================================
+   BOTONES DE LAS TARJETAS (Editar / Eliminar)
+========================================= */
+#project-list li div {
+    display: flex;
+    gap: 0.5rem;
+}
+
+#project-list li button {
+    padding: 0.4rem 0.8rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+/* Botón Editar (Gris oscuro) */
+#project-list li button:nth-child(2) {
+    background-color: var(--text-muted);
+    color: white;
+}
+
+#project-list li button:nth-child(2):hover {
+    background-color: var(--text-main);
+}
+
+/* Botón Eliminar (Rojo) */
+#project-list li button:last-child {
+    background-color: #fee2e2;
+    color: var(--danger-color);
+}
+
+#project-list li button:last-child:hover {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+
+
+
+
+
+
+.contenedor-botones {
+    display: flex;
+    gap: 0.5rem; /* Espacio entre los dos botones */
+}
+
+.btn-editar, .btn-eliminar {
+    padding: 0.4rem 0.8rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Estilos específicos del botón Editar (Gris oscuro) */
+.btn-editar {
+    background-color: var(--text-muted, #6b7280);
+    color: white;
+}
+
+.btn-editar:hover {
+    background-color: var(--text-main, #111827);
+}
+
+/* Estilos específicos del botón Eliminar (Rojo claro) */
+.btn-eliminar {
+    background-color: #fee2e2;
+    color: var(--danger-color, #ef4444);
+}
+
+.btn-eliminar:hover {
+    background-color: var(--danger-color, #ef4444);
+    color: white;
+}

@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Manager",
+      "email": "manager@test.com",
+      "password": "123457",
+      "role": "manager"
+    },
+    {
+      "id": "2",
+      "name": "Collaborator",
+      "email": "user@test.com",
+      "password": "123456",
+      "role": "collaborator"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Crear una silla",
+      "description": "Silla de 4 patas",
+      "status": "In Progress",
+      "assignedTo": "2",
+      "id": "YuGygKbrJhk"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
